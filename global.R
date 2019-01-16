@@ -16,3 +16,5 @@ example_dist <- rnorm(heights, mean = mean(heights), sd = sd(heights)) %>%
 input_mean <- mean(Galton$childHeight)
 input_sd <- sd(Galton$childHeight)
 
+
+

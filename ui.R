@@ -17,7 +17,8 @@ ui <- dashboardPage(skin = "red",
       menuItem("Cumulative Density Function", tabName = "cdf", startExpanded = TRUE,
                menuSubItem("Explanation", tabName = "cdfExp", icon = shiny::icon("circle")),
                menuSubItem("Demonstration", tabName = "cdfDemo", icon = shiny::icon("circle"))
-      )#menuItem
+      ),#menuItem
+      menuItem("Glossary", tabName = "Glossary")
     )#sidebarMenu
   ),#dashboardSidebar
     
@@ -26,10 +27,20 @@ ui <- dashboardPage(skin = "red",
     tabItems(
       tabItem(tabName = "Introduction",
               box(
-                h3("The goal of this app is to create an easily digestible way to explain 
+                h2("Introduction"),
+                br(),
+                h4("The goal of this app is to create an easily digestible way to explain 
                 some of the fundamental concepts of statistics. We aim to do this by 
                 using a real-world dataset (Galton's height data) to display visually 
-                how certain aspects of the data can affect things like distribution, "), width = 12
+                how certain aspects of the data can affect things like distribution, 
+                interquartile ranges, and cumulative distribution functions. We will use 
+                interactive graphs so that the effects of these statistics are easily displayed
+                and understood."),
+                br(),
+                h4("As this is must be a somewhat brief format textbook to fit the constrictions
+                of this app, we will provide a brief glossary of some of the more important 
+                concepts while assuming some basic understanding of the underlying concepts."), 
+                width = 12
               )#box
       ),#tabItem
       tabItem(tabName = "ndistExp",
@@ -63,13 +74,55 @@ ui <- dashboardPage(skin = "red",
               h3("Explanation of interquartile ranges")
       ),#tabItem
       tabItem(tabName = "quartDemo",
-              h3("Demo of interquartile ranges")
+              h3("Use the sliders below to visualize the impact that mean and standard deviation have on interquartile ranges."),
+              fluidRow(
+                box(
+                  sliderInput("mean2",
+                              "Mean",
+                              min = 55,
+                              max = 80,
+                              value = input_mean
+                  )#sliderInput
+                ),#box
+                box(
+                  sliderInput("sd2",
+                              "Standard Deviation",
+                              min = 1,
+                              max = 10,
+                              value = input_sd
+                  )#sliderInput
+                )#box
+              ),#fluidRow
+              plotOutput("quartPlot")
       ),#tabItem
       tabItem(tabName = "cdfExp",
               h3("Explanation of CDF")
       ),#tabItem
       tabItem(tabName = "cdfDemo",
-              h3("Demo of CDF")
+              h3("Use the sliders below to visualize the impact that mean and standard
+                  deviation have on a cumulative density function."),
+              fluidRow(
+                box(
+                  sliderInput("mean3",
+                              "Mean",
+                              min = 55,
+                              max = 80,
+                              value = input_mean
+                  )#sliderInput
+                ),#box
+                box(
+                  sliderInput("sd3",
+                              "Standard Deviation",
+                              min = 1,
+                              max = 10,
+                              value = input_sd
+                  )#sliderInput
+                )#box
+              ),#fluidRow
+              plotOutput("cdfPlot")
+      ),#tabItem
+      tabItem(tabName = "Glossary",
+              h3("List of important terms")
       )#tabItem
     )#tabItems        
   )#dashboardBody
