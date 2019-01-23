@@ -62,13 +62,13 @@ ui <- dashboardPage(skin = "red",
                 h4('All normal distributions are symmetric with relatively 
                   more values at the center of the distribution and relatively few in 
                   their tails. Where normal distributions can differ is in their means and 
+                  in their standard deviations. The ', strong('mean'), ', ', em('µ'), ', the average 
                   value of a dataset, will be the value on the x-axis where the majority of 
-                  in their standard deviations. The ', strong('mean'), ', µ, is the average 
                   the data points are clustered. If the mean changes, then the center of the 
+                  distribution changes. The ', strong('standard deviation'), ', ', em('σ'), ', of the data 
                   tells us how far on average the data will stray from the mean to either 
                   side. Therefore, the smaller the deviation is, the more narrow the 
-                  distribution changes. The ', strong('standard deviation'), ', σ, of the data 
-                  distribution will be the measure of this dispursement: a larger deviation 
+                  distribution will be, and a larger deviation 
                   will result in a wider range to the distribution.'),
                 br(),
                 h4("Now take a look at the demonstration tab to see how changing these two 
@@ -111,7 +111,7 @@ ui <- dashboardPage(skin = "red",
                 box(
                 h3("Interquartile Ranges (IQRs)"),
                 br(),
-                h4('To understand the interquartile range, it would be best to start with 
+                h4('To understand the ', strong('interquartile range'), ', it would be best to start with 
                    an explanation of how it is created. We first order all points of data 
                   in order from least to greatest. Then we must determine three specific 
                   data points:'),
@@ -177,7 +177,7 @@ ui <- dashboardPage(skin = "red",
                      height data falls between 56 and 79 inches. This means that this 
                      CDF will increase from zero to one in that same interval."),
                   br(),
-                  h4("The rate at which the function increases it dependent on the 
+                  h4("The rate at which the function increases is dependent on the 
                      amount of data points that coincide with each value within this range. This 
                      means that, for a data set with 100 points of data, if the first 
                      position in the range holds 3 identical data points, then the CDF 
@@ -244,7 +244,8 @@ ui <- dashboardPage(skin = "red",
                   h4(strong("Mean - "), "The arithmatic average of the dataset."),
                   h4(strong("Standard Deviation - "),"A measure of the variation or dispersion of a dataset. A low standard deviation indicates that the majority of the data is close to the mean, and a large standard deviation means that the data is spread out over a wider range of values."),
                   h4(strong("Median - "), "In an ordered dataset, this is the middle point separating the lower and upper halves of the data. This is the actual central data point, rather than a calculated average."),
-                  h4(strong("Independent variable - "), ""), width = 12
+                  h4(strong("Independent variable - "), ""), 
+                  h4(strong("Interquartile - "), ""), width = 12
                 )#box
               )#fluidRow
       )#tabItem
