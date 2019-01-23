@@ -131,4 +131,8 @@ shinyServer(function(input, output) {
     text(x=fivenum(X), labels =c("min", "Q1", "Q2", "Q3", "max"), y=1.35)
   })
   
+  output$table <- renderTable({
+    Galton %>% select(X, father, mother, midparentHeight, childHeight, gender) %>% head(n = 15)
+  })
+  
 })

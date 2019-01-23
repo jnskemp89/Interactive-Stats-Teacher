@@ -1,7 +1,7 @@
 # Define UI for application that draws a histogram
 ui <- dashboardPage(skin = "red",
   dashboardHeader(
-    title = "Statistics Teacher"
+    title = h3("Statistics Teacher")#CENTER
   ),#dashboardHeader
   dashboardSidebar(
     sidebarMenu(
@@ -41,34 +41,37 @@ ui <- dashboardPage(skin = "red",
                 of this app, we will provide a brief glossary of some of the more important 
                 concepts, written in ", strong('bold'), ", while assuming some basic understanding of the underlying concepts.
                 The intent will be to show in particular how specifically the population variables
-                of mean and standard deviation link and influence the three chosen topics."), 
-                width = 12
+                of mean and standard deviation link and influence the three chosen topics.")
+              ),#box
+              box(
+                h2("Galton's height data"),
+                tableOutput("table")
               )#box
       ),#tabItem
       tabItem(tabName = "ndistExp",
               box(
                 h3("Normal Distributions"),
                 br(),
-                h4('The normal distribution is the most important and most widely used 
-                  distribution in statistics. It is sometimes called the "bell curve," 
+                h4('The normal distribution is one of the more universal and widely used 
+                  distributions in statistics. It is sometimes called the "bell curve," 
                   or the "Gaussian curve" after the mathematician Karl Friedrich Gauss. 
                   These distributions are generally indicative of a dataset containing 
-                  highly independent variables, meaning that the observed findings do 
+                  highly ', strong('independent variables'), ', meaning that the observed findings do 
                   not have any underlying factors influencing the variable in question.'),
                 br(),
                 h4('All normal distributions are symmetric with relatively 
                   more values at the center of the distribution and relatively few in 
                   their tails. Where normal distributions can differ is in their means and 
-                  in their standard deviations. The ', strong('mean'), ' , as the average value of a dataset,
-                  will be the value on the x-axis where the majority of the data points
-                  are clustered. If the mean changes, then the center of the distribution 
-                  changes. The ', strong('standard deviation'), ' of the data tells us how far on average 
-                  the data will stray from the mean to either the positive or the negative 
+                  value of a dataset, will be the value on the x-axis where the majority of 
+                  in their standard deviations. The ', strong('mean'), ', µ, is the average 
+                  the data points are clustered. If the mean changes, then the center of the 
+                  tells us how far on average the data will stray from the mean to either 
                   side. Therefore, the smaller the deviation is, the more narrow the 
-                  distribution will be, and a larger deviation will result in a wider range 
-                  to the distribution.'),
+                  distribution changes. The ', strong('standard deviation'), ', σ, of the data 
+                  distribution will be the measure of this dispursement: a larger deviation 
+                  will result in a wider range to the distribution.'),
                 br(),
-                h4("Now take a look at the demonstration tab so see how changing these two 
+                h4("Now take a look at the demonstration tab to see how changing these two 
                   values will affect the distribution as a whole. By default for this and all
                   other demonstrations in this application, the mean and standard deviation 
                   will be set to match the values in Galton's height data, depicted by a 
@@ -116,8 +119,8 @@ ui <- dashboardPage(skin = "red",
                   tags$li(h4("The ", strong('median'), ", which will be labelled Q2")),
                   tags$li(h4("The median of the half of the data which precedes Q2, which will be labelled Q1")),
                   tags$li(h4("The median of the half of the data which follows Q2, which will be labelled Q3")))),
-                h4('These points will be used to create the boundaries of our IQR, sectioning
-                  off the dataset into four equally sized parts. The IQR is depicted by 
+                h4('These points will create the boundaries of our IQR, sectioning
+                  off the dataset into four equally populated parts. The IQR is depicted by 
                   drawing a box with sides at the Q1 and Q3 boundaries, with Q2 running 
                   through the middle, and a line emerging perpendicular from either side 
                   and ending at the minimun and maximum values of the dataset. Any points that 
@@ -127,12 +130,17 @@ ui <- dashboardPage(skin = "red",
                 plotOutput("boxPlot"),
               
                 h4("It is easy to see how the mean will affect this particular chart, since 
-                  it the mean and the median values of a set are so closely related. Changing 
-                  the mean will by rule change the Q2 value in a very similar way. Increasing standard 
+                  the mean and the median values of a set are so closely related. Changing 
+                  the mean will almost by rule change the Q2 value in a very similar way*. Increasing standard 
                   deviation will cause the data to vary further from the median, thus the widths of the 
                   four quartiles will increase. Take a look at the demonstration on the next page to see
                   these effects in action. The histogram and bell curve from the previous example are 
-                  provided here as well for context."), width = 12
+                  provided here as well for context."), 
+                br(),
+                h5("*Note that this is especially true for this app, as each time the mean is changed 
+                   the app is regenerating the entire data set to match. There would be less perceptible 
+                   impact, or rather none at all, if the mean was changed by altering other values while 
+                   leaving the median value the same."), width = 12
               )#box
               )#fluidRow
       ),#tabItem
@@ -163,22 +171,22 @@ ui <- dashboardPage(skin = "red",
                 box(
                   h3("Cumulative Distributuion Function (CDF)"),
                   br(),
-                  h4("The CDF is a function which shows how quickly a data set reaches
-                     100% of its data points over the observed data range. From observing 
+                  h4("The CDF is a function which shows the rate at which a data set encounters
+                     100% of its values over the observed data range. From observing 
                      the histogram of the Galton dataset we can see that all of our 
-                     height data falls between 56 and 79 inches. This means that the 
+                     height data falls between 56 and 79 inches. This means that this 
                      CDF will increase from zero to one in that same interval."),
                   br(),
                   h4("The rate at which the function increases it dependent on the 
-                     accumulation of data points at each value within this range. This 
+                     amount of data points that coincide with each value within this range. This 
                      means that, for a data set with 100 points of data, if the first 
                      position in the range holds 3 identical data points, then the CDF 
                      will increase by 0.03 at that position (3%). This continues for 
-                     every position in the range of the data values until all the data 
-                     has been accounted for."),
+                     every position in the range of the observed values until all the data 
+                     has been accounted for and the CDF reaches 100%."),
                   br(),
-                  h4('The CDF of a normally distributed variable will always take on a 
-                     distinctive "S" shape due to the bell-shaped distribution. Because
+                  h4("The CDF of a normally distributed variable will always take on a 
+                     distinctive 'S' shape due to the variable's bell-shaped distribution. Because
                      the tails contain fewer data points being furthest away from the 
                      mean, they will have the slowest step-by-step increase contributing
                      to the CDF. The range values at and near the mean, where most of 
@@ -188,9 +196,9 @@ ui <- dashboardPage(skin = "red",
                      until it reaches the end of the range. Another way to think about this 
                      is by taking the histogram bar at each position in the range and 
                      stacking it on top of all the previous histogram bars. The line 
-                     connecting the tops of all of these stacks will be our CDF.'),
+                     connecting the tops of all of these stacks will be our CDF."),
                   br(),
-                  h4("This means that the mean and standard deviation of the normal 
+                  h4("It follows that the mean and standard deviation of the normal 
                      distribution will have an intuitive impact on the shape of this 
                      function. A change in the mean will result in a change in the 
                      position where we have the sharpest increase in the graph, which 
@@ -201,7 +209,8 @@ ui <- dashboardPage(skin = "red",
                      across our CDF more gradual. Of course the opposite also holds true - 
                      a smaller standard deviation results in data which is more tightly 
                      condensed around the mean, which will make for a much steeper and 
-                     sudden increase in the CDF."),
+                     sudden increase in the CDF. Take a look at the following demonstration
+                     to see this in action."),
                   width = 12
                 )#box
               )#fluidRow
@@ -235,7 +244,7 @@ ui <- dashboardPage(skin = "red",
                   h4(strong("Mean - "), "The arithmatic average of the dataset."),
                   h4(strong("Standard Deviation - "),"A measure of the variation or dispersion of a dataset. A low standard deviation indicates that the majority of the data is close to the mean, and a large standard deviation means that the data is spread out over a wider range of values."),
                   h4(strong("Median - "), "In an ordered dataset, this is the middle point separating the lower and upper halves of the data. This is the actual central data point, rather than a calculated average."),
-                  h4(""), width = 12
+                  h4(strong("Independent variable - "), ""), width = 12
                 )#box
               )#fluidRow
       )#tabItem
